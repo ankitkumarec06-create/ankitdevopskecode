@@ -1,0 +1,22 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.70.0"
+    }
+  }
+}
+provider "azurerm" {
+  features {}
+}
+variable "x" {}
+variable "y" {}
+
+resource "azurerm_resource_group" "dev" {
+  name     = var.x 
+  location = "Westus"
+}
+resource "azurerm_resource_group" "devqa" {
+  name     = var.y 
+  location = "Westus"
+}

@@ -1,0 +1,25 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.70.0"
+    }
+  }
+}
+
+provider "azurerm" {
+ features{}
+}
+resource "azurerm_resource_group" "ankit06" {
+  name     = "rg-ankit06"
+  location = "West Europe"
+ }
+
+resource "azurerm_storage_account" "ankit_pagla" {
+    depends_on=[azurerm_resource_group.ankit06]
+  name                     = "ankitpaglakastorage"
+  resource_group_name      = azurerm_resource_group.ankit06.name
+  location                 = "West Europe"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
