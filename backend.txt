@@ -1,0 +1,30 @@
+terraform {
+    backend "azurerm" {
+      resource_group_name  = "rg-ankit06"
+      storage_account_name = "ankitpaglakastorage"
+      container_name       = "ankitkacontainer"
+      key                  = "bracket"
+    }
+ required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.70.0"
+    }
+  }
+}
+
+provider "azurerm" {
+ features{}
+}
+resource "azurerm_resource_group" "ankitec06_gmail" {
+  name     = "rg-ankitec"
+  location = "West Europe"
+ }
+
+resource "azurerm_storage_account" "ankit_fruits_name" {
+  name                     = "ankitfruitskastorage"
+  resource_group_name      = azurerm_resource_group.ankitec06_gmail.name
+  location                 = "West Europe"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}

@@ -1,0 +1,16 @@
+resource "azurerm_resource_group" "rg" {
+  for_each = {
+    rg_pagla    = "west us"
+    rg_redlabel = "central india"
+    rg_tuborg   = "eastus"
+  }
+
+  name     = each.key
+  location = each.value
+}
+
+output "resource_group_names" {
+  value = [
+    for rg in azurerm_resource_group.rg : rg.name
+  ]
+}

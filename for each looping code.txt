@@ -1,0 +1,17 @@
+terraform {
+  required_providers {
+    azurerm = {
+      source  = "hashicorp/azurerm"
+      version = "4.71.0"
+    }
+  }
+}
+
+provider "azurerm" {
+  features {}
+}
+resource "azurerm_resource_group" "ankitec06_gmail" {
+  for_each = toset(["rg_ankit","rg_prince","rg_vipin"])
+  name     =  each.value
+  location = "West Europe"
+ }
